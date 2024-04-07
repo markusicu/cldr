@@ -427,7 +427,7 @@
 <thead>
 <tr>
 <th>Version</th>
-<th>44 (draft)</th>
+<th>45 (draft)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -448,6 +448,7 @@ This is a stable document and may be used as reference material or cited as a no
 <li>Part 6: <a href="tr35-info.html#Contents">Supplemental</a> (supplemental data)</li>
 <li>Part 7: <a href="tr35-keyboards.html#Contents">Keyboards</a> (keyboard mappings)</li>
 <li>Part 8: <a href="tr35-personNames.html#Contents">Person Names</a> (person names)</li>
+<li>Part 9: <a href="tr35-messageFormat.html#Contents">MessageFormat</a> (message format)</li>
 </ul><h2 id="Contents"><a name="contents-of-part-4-dates" href="#Contents">Contents of Part 4, Dates</a></h2><ul>
 <li><a href="#Overview_Dates_Element_Supplemental">Overview: Dates Element, Supplemental Date and Calendar Information</a></li>
 <li><a href="#Calendar_Elements">Calendar Elements</a><ul>
@@ -1970,6 +1971,7 @@ If N matches the region format, then M = {0} from that format, otherwise M = N.<
     <tr><td>3</td><td>Abbreviated (e.g. MMM)</td></tr>
     <tr><td>4</td><td colspan="2">Wide / Long / Full (e.g. MMMM, EEEE)</td></tr>
     <tr><td>5</td><td colspan="2">Narrow (e.g. MMMMM, EEEEE)<br>(The counter-intuitive use of 5 letters for this is forced by backwards compatibility)</td></tr>
+    <tr><td>&gt;16</td><td colspan="2">Private Use<br>(Reserved for use by implementations using CLDR; will never be otherwise used by CLDR.)</td></tr>
 </tbody></table><p>Notes for the table below:</p><ul>
 <li>Any sequence of pattern characters other than those listed below is invalid. Invalid pattern fields should be handled for formatting and parsing as described in <a href="tr35.html#Invalid_Patterns">Handling Invalid Patterns</a>.</li>
 <li>The examples in the table below are merely illustrative and may not reflect current actual data.</li>
@@ -2281,4 +2283,4 @@ If N matches the region format, then M = {0} from that format, otherwise M = N.<
 <li>If that fails, use other format strings from the locale (including those in <code>&lt;availableFormats&gt;</code>) to try to match the previous or next symbol or literal (again, using a loose match).</li>
 </ul>
 </li>
-</ul><hr><p>Copyright © 2001–2023 Unicode, Inc. All Rights Reserved. The Unicode Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors or omissions. No liability is assumed for incidental and consequential damages in connection with or arising out of the use of the information or programs contained or accompanying this technical report. The Unicode <a href="https://www.unicode.org/copyright.html">Terms of Use</a> apply.</p><p>Unicode and the Unicode logo are trademarks of Unicode, Inc., and are registered in some jurisdictions.</p></div><script>anchors.add('h1, h2, h3, h4, h5, h6, caption');</script></body></html>
+</ul><hr><p>Copyright © 2001–2024 Unicode, Inc. All Rights Reserved. The Unicode Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors or omissions. No liability is assumed for incidental and consequential damages in connection with or arising out of the use of the information or programs contained or accompanying this technical report. The Unicode <a href="https://www.unicode.org/copyright.html">Terms of Use</a> apply.</p><p>Unicode and the Unicode logo are trademarks of Unicode, Inc., and are registered in some jurisdictions.</p></div><script>anchors.add('h1, h2, h3, h4, h5, h6, caption');</script></body></html>

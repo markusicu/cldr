@@ -2,7 +2,7 @@
 
 # Unicode Locale Data Markup Language (LDML)<br/>Part 4: Dates
 
-|Version|44 (draft)        |
+|Version|45 (draft)        |
 |-------|------------------|
 |Editors|Peter Edberg and <a href="tr35.md#Acknowledgments">other CLDR committee members</a>|
 
@@ -39,6 +39,7 @@ The LDML specification is divided into the following parts:
 *   Part 6: [Supplemental](tr35-info.md#Contents) (supplemental data)
 *   Part 7: [Keyboards](tr35-keyboards.md#Contents) (keyboard mappings)
 *   Part 8: [Person Names](tr35-personNames.md#Contents) (person names)
+*   Part 9: [MessageFormat](tr35-messageFormat.md#Contents) (message format)
 
 ## <a name="Contents" href="#Contents">Contents of Part 4, Dates</a>
 
@@ -2001,6 +2002,7 @@ The Date Field Symbol Table below shows the pattern characters (Sym.) and associ
     <tr><td>3</td><td>Abbreviated (e.g. MMM)</td></tr>
     <tr><td>4</td><td colspan="2">Wide / Long / Full (e.g. MMMM, EEEE)</td></tr>
     <tr><td>5</td><td colspan="2">Narrow (e.g. MMMMM, EEEEE)<br/>(The counter-intuitive use of 5 letters for this is forced by backwards compatibility)</td></tr>
+    <tr><td>&gt;16</td><td colspan="2">Private Use<br/>(Reserved for use by implementations using CLDR; will never be otherwise used by CLDR.)</td></tr>
 </table>
 
 Notes for the table below:
@@ -2363,6 +2365,6 @@ The meaning of symbol fields should be easy to determine; the problem is determi
 
 * * *
 
-Copyright © 2001–2023 Unicode, Inc. All Rights Reserved. The Unicode Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors or omissions. No liability is assumed for incidental and consequential damages in connection with or arising out of the use of the information or programs contained or accompanying this technical report. The Unicode [Terms of Use](https://www.unicode.org/copyright.html) apply.
+Copyright © 2001–2024 Unicode, Inc. All Rights Reserved. The Unicode Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors or omissions. No liability is assumed for incidental and consequential damages in connection with or arising out of the use of the information or programs contained or accompanying this technical report. The Unicode [Terms of Use](https://www.unicode.org/copyright.html) apply.
 
 Unicode and the Unicode logo are trademarks of Unicode, Inc., and are registered in some jurisdictions.

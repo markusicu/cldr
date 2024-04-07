@@ -2,7 +2,7 @@
 
 # Unicode Locale Data Markup Language (LDML)<br/>Part 8: Person Names
 
-|Version|44 (draft)              |
+|Version|45 (draft)              |
 |-------|------------------------|
 |Editors|Mark Davis, Peter Edberg,  Rich Gillam, Alex Kolisnychenko, Mike McKenna and [other CLDR committee members](tr35.md#Acknowledgments)|
 
@@ -39,6 +39,7 @@ The LDML specification is divided into the following parts:
 *   Part 6: [Supplemental](tr35-info.md#Contents) (supplemental data)
 *   Part 7: [Keyboards](tr35-keyboards.md#Contents) (keyboard mappings)
 *   Part 8: [Person Names](tr35-personNames.md#Contents) (person names)
+*   Part 9: [MessageFormat](tr35-messageFormat.md#Contents) (message format)
 
 ## <a name="Contents">Contents of Part 8, Person Names</a>
 
@@ -136,12 +137,6 @@ The following features are currently out of scope for Person Names formating:
   * Parsing out the other components of a name in a string, such as surname prefixes ([Tussenvoegsel](https://en.wikipedia.org/wiki/Tussenvoegsel) in Dutch).
 
 ### API Implementation
-
-A draft API for formatting personal names was first included in ICU4J 73 and has been updated for ICU4J 74 to reflect updates in this specification and associated data. (“Draft” means that the full functionality is present, but the API might be refined before it is stabilized.) The implementation can be found at the following:
-
-* [PersonName.java](https://github.com/unicode-org/icu/blob/main/icu4j/main/core/src/main/java/com/ibm/icu/text/PersonName.java)
-* [PersonNameFormatter.java](https://github.com/unicode-org/icu/blob/main/icu4j/main/core/src/main/java/com/ibm/icu/text/PersonNameFormatter.java)
-* [SimplePersonName.java](https://github.com/unicode-org/icu/blob/main/icu4j/main/core/src/main/java/com/ibm/icu/text/SimplePersonName.java)
 
 In addition to the settings in this document, it is recommended that implementations provide some additional features in their APIs to allow more control for clients, notably:
 
@@ -290,11 +285,11 @@ This would tell the formatting code, when handling person name data from an Engl
 ```
 Many clients of the person-names functionality don’t really care about formal versus informal; they just want whatever the “normal” formality level is for the user’s language. The same goes for the default length.
 
-This parameter provides that information, so that APIs can allow users to use default values for the formality and length. The exact form that this takes depends on the API conventions, of course. 
+This parameter provides that information, so that APIs can allow users to use default values for the formality and length. The exact form that this takes depends on the API conventions, of course.
 
 ### foreignSpaceReplacement Element
 
-The `<foreignSpaceReplacement>` element is used to specify how spaces should be handled when the name language is **different from** the formatting language. It is used in languages that don't normally require spaces between words. For example, Japanese and Chinese have the value of a middle dot (‘·’ U+00B7 MIDDLE DOT or ‘・’ U+30FB KATAKANA MIDDLE DOT), so that it is used between words in a foreign name; most other languages have the value of SPACE. 
+The `<foreignSpaceReplacement>` element is used to specify how spaces should be handled when the name language is **different from** the formatting language. It is used in languages that don't normally require spaces between words. For example, Japanese and Chinese have the value of a middle dot (‘·’ U+00B7 MIDDLE DOT or ‘・’ U+30FB KATAKANA MIDDLE DOT), so that it is used between words in a foreign name; most other languages have the value of SPACE.
 
 ```xml
 <!ELEMENT foreignSpaceReplacement ( #PCDATA ) >
@@ -509,10 +504,10 @@ The modifiers transform the input data as described in the following table:
 
 #### Grammatical Modifiers for Names
 
-The CLDR person name formatting does not itself support grammatical inflection. 
+The CLDR person name formatting does not itself support grammatical inflection.
 However, name sources (NameObject) can support inflections, either by having additional fields or by using an inflection engine that can handle personal name parts.
 
-In the current release, the focus is on supporting `referring` and `addressing` forms. 
+In the current release, the focus is on supporting `referring` and `addressing` forms.
 Typically the `referring` forms will be in the most neutral (*nominative*) case, and the `addressing` forms will be in the *vocative* case.
 Some modifiers have been added to facilitate this, so that there can be patterns like: {given-vocative} {surname-vocative}.
 
@@ -527,7 +522,7 @@ For example:
 Notice that the `surname` in Latvian needs to change to the genitive case with that pattern:
 
 Ozoliņš ➡︎ **Ozoliņa**
-	
+
 That is accomplished by changing the pattern to be {surname<b>-genitive</b>} {title}. In this case the {surname} should only be genitive if followed by the {title}.
 
 #### Future Modifiers
@@ -579,7 +574,7 @@ Let the **full formatting locale** be the maximal likely locale for the formatte
 A few script values represent a set of scripts, such as Jpan = {Hani, Kana, Hira}. Two script codes are said to _match_ when they are either identical, or one represents a set which contains the other, or they both represent sets which intersect. For example, Hani and Jpan match, because {Hani, Kana, Hira} contains Hani.
 
 If the **name script** doesn't match the **formatting script**:
-1. If the name locale has name formatting data, then set the formatting locale to the name locale. 
+1. If the name locale has name formatting data, then set the formatting locale to the name locale.
 2. Otherwise, set the formatting locale to the maximal likely locale for the the locale formed from und, plus the name script plus the region of the nameLocale.
 
 For example, when a Hindi (Devanagari) formatter is called upon to format a name object that has the locale Ukrainian (Cyrillic):
@@ -1120,6 +1115,6 @@ To make an initial when there are multiple words, an implementation might produc
 
 * * *
 
-Copyright © 2001–2023 Unicode, Inc. All Rights Reserved. The Unicode Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors or omissions. No liability is assumed for incidental and consequential damages in connection with or arising out of the use of the information or programs contained or accompanying this technical report. The Unicode [Terms of Use](https://www.unicode.org/copyright.html) apply.
+Copyright © 2001–2024 Unicode, Inc. All Rights Reserved. The Unicode Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors or omissions. No liability is assumed for incidental and consequential damages in connection with or arising out of the use of the information or programs contained or accompanying this technical report. The Unicode [Terms of Use](https://www.unicode.org/copyright.html) apply.
 
 Unicode and the Unicode logo are trademarks of Unicode, Inc., and are registered in some jurisdictions.

@@ -2,7 +2,7 @@
 
 # Unicode Locale Data Markup Language (LDML)<br/>Part 3: Numbers
 
-|Version|44 (draft)|
+|Version|45 (draft)|
 |-------|----------|
 |Editors|Shane F. Carr (<a href="mailto:shane@unicode.org">shane@unicode.org</a>) and <a href="tr35.md#Acknowledgments">other CLDR committee members|
 
@@ -39,6 +39,7 @@ The LDML specification is divided into the following parts:
 *   Part 6: [Supplemental](tr35-info.md#Contents) (supplemental data)
 *   Part 7: [Keyboards](tr35-keyboards.md#Contents) (keyboard mappings)
 *   Part 8: [Person Names](tr35-personNames.md#Contents) (person names)
+*   Part 9: [MessageFormat](tr35-messageFormat.md#Contents) (message format)
 
 ## <a name="Contents" href="#Contents">Contents of Part 3, Numbers</a>
 
@@ -905,9 +906,11 @@ For background information on currency names, see [[CurrencyInfo](tr35.md#Curren
 <!ATTLIST region iso3166 NMTOKEN #REQUIRED >
 
 <!ELEMENT currency ( alternate* ) >
+<!ATTLIST currency iso4217 NMTOKEN #REQUIRED >
 <!ATTLIST currency from NMTOKEN #IMPLIED >
 <!ATTLIST currency to NMTOKEN #IMPLIED >
-<!ATTLIST currency iso4217 NMTOKEN #REQUIRED >
+<!ATTLIST currency tz CDATA #IMPLIED >
+<!ATTLIST currency to-tz CDATA #IMPLIED >
 <!ATTLIST currency tender ( true | false ) #IMPLIED >
 ```
 
@@ -963,17 +966,24 @@ Each `region` element contains one attribute:
 And can have any number of `currency` elements, with the `ordered` subelements.
 
 ```xml
-<region iso3166="IT"> <!-- Italy -->
-    <currency iso4217="EUR" from="2002-01-01"/>
-    <currency iso4217="ITL" to="2001-12-31"/>
+<region iso3166="HR"> <!-- Croatia -->
+    <currency iso4217="EUR" from="2023-01-01" tz="Europe/Zagreb"/>
+    <currency iso4217="HRK" from="1994-05-30" to="2023-01-14" to-tz="Europe/Zagreb"/>
+    <currency iso4217="HRD" from="1991-12-23" to="1995-01-01"/>
+    <currency iso4217="YUN" from="1990-01-01" to="1991-12-23"/>
+    <currency iso4217="YUD" from="1966-01-01" to="1990-01-01"/>
 </region>
 ```
 
 * **iso4217:** the ISO 4217 code for the currency in question. Note that some additional codes that were in widespread usage are included, others such as GHP are not included because they were never used.
-* **from:** the currency was valid from to the datetime indicated by the value. See the main document _[Dates and Date Ranges](tr35.md#Date_Ranges)_.
-* **to:** the currency was valid up to the datetime indicated by the value of _before_. See the main document _[Dates and Date Ranges](tr35.md#Date_Ranges)_.
+* **from:** the currency was valid from the datetime indicated by the value. See the main document _[Dates and Date Ranges](tr35.md#Date_Ranges)_.
+* **to:** the currency was valid up to the datetime indicated by the value. See the main document _[Dates and Date Ranges](tr35.md#Date_Ranges)_.
+* **tz:** the timezone associated with the `from` transition datetime. If no `to-tz` attribute is specified, it also applies to the `to` transition datetime.
+    * Timezones for the `tz` and `to-tz` attribute are specified using the CLDR canonical “long” time zone ID as described under **Stability of Time Zone Identifiers** in [Time Zone Identifiers](tr35.md#Time_Zone_Identifiers).
+* **to-tz:** the timezone associated with the `to` transition datetime. This timezone applies to the `to` value, and need only be specified if it is different from any timezone specified by a `tz` attribute.
 * **tender:** indicates whether or not the ISO currency code represents a currency that was or is legal tender in some country. The default is "true". Certain ISO codes represent things like financial instruments or precious metals, and do not represent normally interchanged currencies.
 
+> **Note on converting transition datetimes for implementation use:** The fact that CLDR stores the timezone separately from the transition datetime is for ease of CLDR maintenance. Implementations that use CLDR data may want to convert the combination into something like a single UTC timestamp for internal use.
 
 That is, each `currency` element will list an interval in which it was valid. The _ordering_ of the elements in the list tells us which was the primary currency during any period in time. Here is an example of such an overlap:
 
@@ -1292,7 +1302,7 @@ The `pluralRanges` element provides information allowing an implementation to de
 
 The data has been gathered presuming that in any usage, the start value is strictly less than the end value, and that no values are negative. Results for any cases that do not meet these criteria are undefined.
 
-For the formatting of number ranges, see <a name="Number_Range_Formatting" href="#Number_Range_Formatting">Number Range Formatting</a>.
+For the formatting of number ranges, see <a href="#Number_Range_Formatting">Number Range Formatting</a>.
 
 ## <a name="Rule-Based_Number_Formatting" href="#Rule-Based_Number_Formatting">Rule-Based Number Formatting</a>
 
@@ -1465,6 +1475,6 @@ To add spacing, insert a non-breaking space (U+00A0) at the positions in item 2 
 
 * * *
 
-Copyright © 2001–2023 Unicode, Inc. All Rights Reserved. The Unicode Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors or omissions. No liability is assumed for incidental and consequential damages in connection with or arising out of the use of the information or programs contained or accompanying this technical report. The Unicode [Terms of Use](https://www.unicode.org/copyright.html) apply.
+Copyright © 2001–2024 Unicode, Inc. All Rights Reserved. The Unicode Consortium makes no expressed or implied warranty of any kind, and assumes no liability for errors or omissions. No liability is assumed for incidental and consequential damages in connection with or arising out of the use of the information or programs contained or accompanying this technical report. The Unicode [Terms of Use](https://www.unicode.org/copyright.html) apply.
 
 Unicode and the Unicode logo are trademarks of Unicode, Inc., and are registered in some jurisdictions.

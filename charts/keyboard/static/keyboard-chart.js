@@ -60,9 +60,9 @@ function mogrifyKeys(keys) {
   return keys.reduce((p, v) => {
     // TODO: any other swapping
     mogrifyAttrs(v);
-    const { id, to } = v;
-    if (to) {
-      v.to = unescapeStr(to);
+    const { id, output } = v;
+    if (output) {
+      v.output = unescapeStr(output);
     }
     p[id] = v;
     return p;
@@ -94,7 +94,7 @@ function getKeyboardKeys(id) {
     {
       // add implied import
       "@_base": "cldr",
-      "@_path": "techpreview/keys-Latn-implied.xml",
+      "@_path": "45/keys-Latn-implied.xml",
     },
     ...(_KeyboardData.keyboards[id].keyboard3.keys.import || []),
   ];
