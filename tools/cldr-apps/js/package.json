@@ -43,7 +43,7 @@
   "dependencies": {
     "@datadog/browser-logs": "^5.4.0",
     "@datadog/browser-rum": "^5.4.0",
-    "ant-design-vue": "^3.2.16",
+    "ant-design-vue": "^4.2.6",
     "browser-fs-access": "^0.35.0",
     "marked": "^4.3.0",
     "swagger-client": "^3.26.7",
