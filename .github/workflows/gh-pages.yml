@@ -64,7 +64,7 @@ jobs:
         # if the archiver had to update anything, or if anchors changed
         run: git status ; git diff
       - name: Restore lychee cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .lycheecache
           key: cache-lychee-${{ github.sha }}
