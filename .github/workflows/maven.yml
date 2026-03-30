@@ -21,7 +21,7 @@ jobs:
     steps:
       # since we have to checkout all branches, cache here
       - name: Cache .git
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .git
           key: git-${{ github.base_ref }}-${{ github.sha }}
@@ -37,7 +37,7 @@ jobs:
       - name: Lint GitHub Actions
         run: npx yaml-lint .github/workflows/*.yml
       - name: Cache local Maven repository
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-mavenspotless-${{ hashFiles('tools/**/pom.xml') }}
@@ -46,7 +46,7 @@ jobs:
       - name: Check Java style
         run: mvn --file=tools/pom.xml spotless:check || (echo "Style checker failed. Formatting changes can be applied by 'mvn spotless:apply'" && exit 1)
       - name: Restore lychee cache
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: .lycheecache
           key: cache-lychee-${{ github.sha }}
@@ -80,14 +80,14 @@ jobs:
           java-version: 11
           distribution: 'temurin'
       - name: Cache local Maven repository
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('tools/**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Cache local npm repository
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -95,7 +95,7 @@ jobs:
             ${{ runner.os }}-node-
             node-
       - name: Cache webpack
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: tools/cldr-apps/target/webpack_cache
           key: ${{ runner.os }}-webpack-${{ hashFiles('tools/cldr-apps/package*') }}-${{ hashFiles('tools/cldr-apps/src/**') }}
@@ -159,14 +159,14 @@ jobs:
           java-version: 11
           distribution: 'temurin'
       - name: Cache local Maven repository
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('tools/**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Cache local npm repository
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -174,7 +174,7 @@ jobs:
             ${{ runner.os }}-node-
             node-
       - name: Cache webpack
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: tools/cldr-apps/target/webpack_cache
           key: ${{ runner.os }}-webpack-${{ hashFiles('tools/cldr-apps/package*') }}-${{ hashFiles('tools/cldr-apps/src/**') }}
@@ -234,7 +234,7 @@ jobs:
           java-version: 11
           distribution: 'temurin'
       - name: Cache local Maven repository
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-mavencheck-${{ hashFiles('tools/**/pom.xml') }}
@@ -292,14 +292,14 @@ jobs:
         name: cldr-apps-server
         path: tools/cldr-apps/target/cldr-apps.zip
     - name: Cache local Maven repository
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-mavencheck-${{ hashFiles('tools/**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-mavencheck-
     - name: Cache local npm repository
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
