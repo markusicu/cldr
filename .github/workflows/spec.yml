@@ -41,7 +41,7 @@ jobs:
           lfs: false
           fetch-depth: 1
       - name: Cache local npm repository
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.os }}-nodetr-${{ hashFiles('tools/scripts/tr-archive/package-lock.json') }}
@@ -77,7 +77,7 @@ jobs:
         # if the archiver had to update anything, or if anchors changed
         run: git status ; git diff
       - name: Restore lychee cache
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: .lycheecache
           key: cache-lycheespec-${{ github.sha }}
