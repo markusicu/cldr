@@ -69,7 +69,7 @@
 		<assertj-version>3.26.3</assertj-version>
 		<httpcomponents-version>5.2.1</httpcomponents-version>
 		<!--  web-specific properties are under cldr-apps -->
-		<mysql.version>8.0.30</mysql.version>
+		<mysql.version>8.0.33</mysql.version>
 		<!-- jsonwebtoken.io -->
 		<jjwt.version>0.11.5</jjwt.version>
         <spotless.version>2.43.0</spotless.version>
