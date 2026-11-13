@@ -46,7 +46,7 @@
     "@datadog/browser-rum": "^5.4.0",
     "@fontsource/noto-serif-np-hmong": "^5.2.5",
     "ant-design-vue": "^4.2.6",
-    "browser-fs-access": "^0.35.0",
+    "browser-fs-access": "^0.38.0",
     "glyphicons-only-bootstrap": "^1.0.1",
     "marked": "^4.3.0",
     "swagger-client": "^3.37.1",
