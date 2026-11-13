@@ -44,7 +44,7 @@
   "dependencies": {
     "@datadog/browser-logs": "^5.4.0",
     "@datadog/browser-rum": "^5.4.0",
-    "@fontsource/noto-serif-np-hmong": "^5.2.5",
+    "@fontsource/noto-serif-np-hmong": "^5.3.0",
     "ant-design-vue": "^4.2.6",
     "browser-fs-access": "^0.35.0",
     "glyphicons-only-bootstrap": "^1.0.1",
